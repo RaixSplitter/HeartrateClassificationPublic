@@ -1,0 +1,6 @@
+outs:
+- md5: 8470a04f8a44efff01a7fc99cdf955e3.dir
+  size: 697
+  nfiles: 1
+  hash: md5
+  path: mappings
