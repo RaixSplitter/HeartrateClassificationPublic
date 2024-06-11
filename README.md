@@ -2,6 +2,11 @@
 
 Pairing a heartrate to a video sequence of a person with a neural network
 
+## Disclaimer
+The following repo, may have missing files, but should be fully functional. The dataset used for the thesis is not publically available and has to be protected by GDPR rules, therefore all notebooks and potential revealing figures has been cencored out.
+
+## Get started
+
 ## Project structure
 
 The directory structure of the project looks like this:
