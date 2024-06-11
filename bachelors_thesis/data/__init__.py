@@ -13,6 +13,21 @@ from typing import Literal
 import pandas as pd
 
 def generate_file_mapping(data_dir : str, experiment_type : Literal['EO', 'EC', 'BACK'], filepath : str, overwrite : bool = False):
+    """
+    Generate a file mapping for the given data directory and experiment type.
+    
+    Args:
+        data_dir : str : The directory containing the data files.
+        experiment_type : Literal['EO', 'EC', 'BACK'] : The type of experiment.
+        filepath : str : The path to save the file mapping.
+        
+    Kwargs:
+        overwrite : bool : Whether to overwrite the existing file mapping if it exists.
+        
+    Return:
+        None
+    """
+    
     if not overwrite and os.path.exists(filepath):
         logging.debug(f"File mapping already exists at {filepath}. Skipping.")
         return
@@ -25,7 +40,19 @@ def generate_file_mapping(data_dir : str, experiment_type : Literal['EO', 'EC', 
     df.to_csv(filepath, index = False, encoding='utf-8')
     logging.debug(f"File mapping saved to {filepath}")
     
-def get_video_data(mapping_path, tqdm_disabled : bool = True):
+def get_video_data(mapping_path:str, tqdm_disabled:bool=True)->tuple:
+    """
+    Description: This function reads a CSV file containing video filepaths and returns a DataFrame and a list of processed videos.
+
+    Args:
+        mapping_path (str): The path to the CSV file containing the video filepaths.
+
+    Kwargs:
+        tqdm_disabled (bool): Whether to disable the progress bar. Default is True.
+
+    Return:
+        tuple: A tuple containing the DataFrame and the list of processed videos.
+    """
     df = pd.read_csv(mapping_path)
     videos = process_videos(df["filepath"], tqdm_disabled=tqdm_disabled)
     return df, videos
@@ -136,7 +163,21 @@ def extract_rr_intervals(beats, fs = 2048):
     
 
 
-def hr_run(df_path : str, outdir : str, duration, overwrite : bool = False):
+def hr_run(df_path: str, outdir: str, duration: int, overwrite: bool = False) -> None:
+    """
+    Description: This function preprocesses the data from the given CSV file and saves the output files to the given directory.
+
+    Args:
+        df_path : The path to the CSV file containing the data.
+        outdir : The directory where the output files will be saved.
+        duration : The duration of each sample in seconds.
+    
+    Kwargs:
+        overwrite : If True, overwrite existing files. Default is False.
+
+    Return:
+        None
+    """
     df = pd.read_csv(df_path)
     
     outdir = os.path.join(outdir, f"duration{duration}")
