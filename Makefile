@@ -27,6 +27,12 @@ requirements:
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-torch.txt
 	$(PYTHON_INTERPRETER) -m pip install -e .
 
+requirements_gpu_cu118:
+	$(PYTHON_INTERPRETER) -m pip install -r requirements-torch-cu118.txt
+
+requirements_gpu_cu121:
+	$(PYTHON_INTERPRETER) -m pip install -r requirements-torch-cu121.txt
+
 ## Install Developer Python Dependencies
 dev_requirements: requirements
 	$(PYTHON_INTERPRETER) -m pip install .["dev"]
