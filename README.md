@@ -1,4 +1,4 @@
-# bachelors_thesis
+# Bachelors Thesis
 
 Pairing a heartrate to a video sequence of a person with a neural network
 
